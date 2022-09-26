@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>文档的加载</title>
+    <script type="text/javascript">
+        /*
+        浏览器在加载一个页面时，是按照自上向下的顺序加载的，加载一行执行一行。
+        如果将js代码编写到页面的上边，当代码执行时，页面中的DOM对象还没有加载，
+        此时将会无法正常获取到DOM对象，导致DOM操作失败。
+        */
+        // var btn = document.getElementById("btn");  
+		// btn.onclick = function(){  
+		//   alert("别点我！");
+		// };  
+        //window.onload 对应的回调函数会在整个页面加载完毕以后才执行，
+        window.onload = function(){  
+        var btn = document.getElementById("btn");  
+        btn.onclick = function(){ 
+            alert("别点我"); 
+        };  
+    };  
+       
+    </script>
+</head>
+<body> 
+  	<button id="btn">我是按钮</button>
+
+</body>
+</html>

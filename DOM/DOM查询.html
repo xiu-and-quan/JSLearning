@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>标题</title>
+</head>
+<body> 
+
+    <div id="total">
+        <div class="inner">
+            <p>
+                你喜欢那个城市？
+            </p>
+            <ul id="city">
+                <li id="bj">北京</li>
+                <li>上海</li>
+                <li>南京</li>
+                <li>斯特拉斯堡</li>
+
+            </ul>
+
+        </div>
+        <div>
+            <button id="btn01">点击第一个按钮</button>
+            <button id="btn02">点击第二个按钮</button>
+
+        </div>
+
+    </div>
+    <script type="text/javascript"> 
+        /*
+        document.getElementById()通过id获取一个元素节点对象
+        document.getElementsByTagName()通过标签名获取一组元素节点对象
+        document.getElementsByName()通过name属性获取一组元素节点对象
+        */
+       //通过id获取一个元素节点对象
+       var btn01 = document.getElementById("btn01");
+       btn01.onclick = function(){
+           alert(btn01.innerHTML);
+       }
+       //通过标签名获取一组元素节点对象
+       var btn02 = document.getElementsByTagName("li");
+       btn01.onclick = function(){
+           alert(btn01.innerHTML);
+       }
+
+       //通过name属性获取一组元素节点对象
+       var btn03 = document.getElementsByName();
+
+
+
+   
+       
+    </script>
+
+</body>
+</html>
