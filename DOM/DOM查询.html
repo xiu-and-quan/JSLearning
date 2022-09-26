@@ -16,13 +16,28 @@
                 <li>上海</li>
                 <li>南京</li>
                 <li>斯特拉斯堡</li>
+            </ul>
 
+            <p>你喜欢的游戏是哪些</p>
+            <ul id="game">
+                <li id="hj">红警</li>
+                <li >实况</li>
+                <li >极品飞车</li>
+                <li >魔兽</li>
+            </ul>
+            <p>手机的操作系统</p>
+            <ul id="phone"><li>IOS</li><li id="andriod">ANDRIOD</li><li>WINDOWS</li>
             </ul>
 
         </div>
         <div>
             <button id="btn01">点击第一个按钮</button>
             <button id="btn02">点击第二个按钮</button>
+            <button id="btn03">点击第三个个按钮</button>
+            <button id="btn04">点击第四个按钮</button>
+            <button id="btn05">点击第五个按钮</button>
+            <button id="btn06">点击第六个按钮</button>
+
 
         </div>
 
@@ -35,22 +50,57 @@
         */
        //通过id获取一个元素节点对象
        var btn01 = document.getElementById("btn01");
-       btn01.onclick = function(){
+           btn01.onclick = function(){
            alert(btn01.innerHTML);
        }
        //通过标签名获取一组元素节点对象
-       var btn02 = document.getElementsByTagName("li");
-       btn01.onclick = function(){
-           alert(btn01.innerHTML);
+       var btn02 = document.getElementById("btn02")
+           btn02.onclick = function(){
+           var list = document.getElementsByTagName("li");
+           for(var i = 0;i<list.length;i++){
+            alert(list[i]);
+
+           }
        }
-
        //通过name属性获取一组元素节点对象
-       var btn03 = document.getElementsByName();
+    //    var btn03 = document.getElementsByName("btn03");
+    //    btn03.onclick = function(){
+    //     var city = document.getElementById("city");
+    //     var list = city.getElementsByTagName("li");
+    //     for(var i =0;i<list.length;i++){
+    //         alert(list[i]);
+    //     }
+    //    }  
+       var btno4 = document.getElementById("btn04"); 
+       btno4.onclick = function(){
+            var city = document.getElementById("city");
+            //空白也算空白文本节点
+            var children = city.childNodes;
+            alert(children.length);
+            for(var i=0;i<children.length;i++){
+                alert(children[i]);
 
+            }
+       }
+       var btno5 = document.getElementById("btn05");
+       btno5.onclick = function(){
+        var city = document.getElementById("city");
+        var list1 = city.children;
+        //获取当前元素的子元素，不算空白文本
+        alert(list1.length);
+       }
+       var btno6 = document.getElementById("btn06");
+       btno6.onclick = function (){
+           var phone = document.getElementById("phone");
+           //firstChild获取当前节点的第一个子节点
+           //包括空白文本节点
+           var first = phone.firstChild;
+           alert(first);
+           //firstChild获取当前节点的第一个子元素
+           //不建议用 不支持ie8以及以下版本
+           first = phone.firstElementChild;
 
-
-   
-       
+       }
     </script>
 
 </body>
