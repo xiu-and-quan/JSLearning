@@ -28,7 +28,17 @@
             <p>手机的操作系统</p>
             <ul id="phone"><li>IOS</li><li id="andriod">ANDRIOD</li><li>WINDOWS</li>
             </ul>
-
+        </div>
+        <div class="inner">
+            gender:
+            <input class="hello" type="radio" name="gender" value="male" />
+            Male
+            <input class="hello" type="radio" name="gender" value="female" />
+            Female
+            <br>
+            <br>
+            name:
+            <input type="text" name="name" id="userName" value="abcde" />
         </div>
         <div>
             <button id="btn01">点击第一个按钮</button>
@@ -37,12 +47,23 @@
             <button id="btn04">点击第四个按钮</button>
             <button id="btn05">点击第五个按钮</button>
             <button id="btn06">点击第六个按钮</button>
+            <button id="btn07">点击第七个按钮</button>
+            <button id="btn08">点击第八个按钮</button>
+            <button id="btn09">点击第九个按钮</button>
+            <button id="btn10">点击第十个按钮</button>
+            
 
 
         </div>
 
     </div>
-    <script type="text/javascript"> 
+    <script type="text/javascript">
+        //封装：idStr 要绑定单机相应函数的对象id属性值
+        //     fun   事件的回调函数，当单机元素时，该函数会被触发
+        function myClick(idStr,fun){
+            var btn = document.getElementById(idStr);
+            btn.onclick = fun;
+        }
         /*
         document.getElementById()通过id获取一个元素节点对象
         document.getElementsByTagName()通过标签名获取一组元素节点对象
@@ -99,8 +120,39 @@
            //firstChild获取当前节点的第一个子元素
            //不建议用 不支持ie8以及以下版本
            first = phone.firstElementChild;
-
        }
+    //   返回北京的父节点
+        myClick("btn07",function (){
+            var bj = document.getElementById("bj");
+            var parent = bj.parentNode;
+            alert(parent.innerText);
+        })
+        /*
+        innerText可以获得元素内部的文本内容
+        和innerHTML类似，只是会把html去除,自动去除标签
+        innerHTML会保留标签
+        */
+       //返回android的前一个兄弟节点,不包括空白的节点
+        myClick("btn08",function(){
+            var android = document.getElementById("andriod");
+            var broPrev = android.previousSibling;
+            alert(broPrev.innerHTML);
+        });
+        //读取userName的value值
+        myClick("btn09",function(){
+            var userName = document.getElementById("userName");
+            userName.value = "你好";
+            alert(userName.value);
+        });
+
+        //返回bj的文本值
+        myClick("btn10",function(){
+            var bj = document.getElementById("bj");
+            //bj的文本值为标签的子节点 树结构 第一个子节点
+            var child = bj.firstChild;
+            alert(child.nodeValue);
+        });
+
     </script>
 
 </body>
