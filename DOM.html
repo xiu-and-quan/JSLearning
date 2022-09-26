@@ -27,7 +27,18 @@
 </head>
 <body>
     <!-- h1标签也是对象，aaa也是对象 -->
-    <h1>aaa</h1>
+    <h1>DOM学习</h1>
+    <button id="btn">我是按钮</button>
+    <script>
+        //在网页中浏览器已经为我们提供了document对象，
+        //它代表的是整个网页，它是window对象的属性，可以在页面中直接使用。
+        //根据元素的id属性查询一个元素节点对象
+        var btn = document.getElementById("btn");
+        //修改按钮的文字
+        btn.innerHTML = "我不是一个按钮";
+        console.log(btn);
+
+    </script>
 
 </body>
 </html>
