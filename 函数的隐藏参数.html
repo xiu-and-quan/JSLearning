@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>函数的隐藏参数</title>
+    <script >
+    /*在调用函数时，浏览器每次都会传递进两个参数
+        1、函数的上下文对象this
+        2、封装实参的对象arguements
+    */
+        //arguments是一个类数组对象
+        //在调用函数时，我们所传递的实参都会在arguements中保存
+        //会按照顺序会一一放到arguements中，所以也可以取出来
+        //arguement里面有一个属性callee，就是当前执行的函数对象
+        function fun(arg1,arg2){
+            console.log(this);
+            console.log(arguments.length);
+            console.log(arguments[0]);
+            console.log(arguments.callee);
+        }
+        fun("hello","world");
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

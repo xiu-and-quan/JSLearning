@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>数组</title>
+    <script >
+    
+    /*
+    sort()
+        可以对一个数组中的内容进行排序，默认是按照Unicode编码进行排序
+        调用以后，会直接修改原数组。
+        可以自己指定排序的规则，需要一个回调函数作为参数：
+
+        我们可以自己来指定排序的规则
+        我们可以在sort()添加一个回调函数，来指定排序规则，
+        回调函数中需要定义两个形参,
+        浏览器将会分别使用数组中的元素作为实参去调用回调函数
+        使用哪个元素调用不确定，但是肯定的是在数组中a一定在b前边
+
+        浏览器会根据回调函数的返回值来决定元素的顺序，
+        如果返回一个大于0的值，则元素会交换位置
+        如果返回一个小于0的值，则元素位置不变
+        如果返回一个0，则认为两个元素相等，也不交换位置
+
+        如果需要升序排列，则返回 a-b
+        如果需要降序排列，则返回b-a
+    */
+       var arr = ["xiu","quan","dongma","heSha"];
+       arr.sort(function(a,b){
+           //大于返回1说明交换位置
+           if(a>b){
+               return 1;
+           }
+           if(a<b){
+               return -1;
+           }
+           if(a<b){
+               return 0;
+           }
+
+       });
+    // 重要  
+    //this的情况：
+    // 1、以函数形式调用时，this永远是window
+    // 2、以方法的形式调用时，this时调用方法的对象
+    // 3、以构造函数形式调用时，this是新创建的那个对象
+    // 4、使用call(),apply()，可以将第一个参数传对象，改变this的指向为第一个参数
+    // call(),apply();
+    // 在调用call和apply()可以将一个对象指定为第一个参数
+    // 此时这个对象将成为该函数的this
+    //call() 第一个参数是对象，后面都是其他参数
+    //apply() 第一个参数是对象 后面的多个参数需要封装到一个数组里统一处理
+    function fun(){
+        alert("fun的this是"+this.name)
+    }
+    var object1 = {name:"obj1"};
+    var object2 = {name:"obj2"};
+    fun.call(object1,1,2);
+    fun.apply(object2,[1,2]);
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>
