@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>函数的隐藏参数</title>
+    <script >
+        /*
+        正则用来定义一些字符串的规则，程序可以根据这些规则来判断一个字符串是否符合规则，
+        也可以将一个字符串中符合规则的内容提取出来。
+        */
+       //创建对象 var reg = new RegExp("正则","匹配模式");
+       var reg = new RegExp("a");
+       console.log(reg);
+       //test()方法可以用来检查一个字符串是否符合正则表达式
+       //如果符合返回true，否则返回false 只要含有a就行。区分大小写
+       //i:忽略大小写（ignore）
+       //g:全局匹配模式（默认为1次）
+       //对象{}
+       //数组[]
+       var str = "abcd";
+       console.log(reg.test(str));
+       //var reg = /正则表达式/匹配模式 （匹配模式可以多个一起写：/gi）
+       reg = /a|b/i;
+       //[x-y] x的ascii到y的ascii码之间的值
+       reg1 = /[a-z]/
+       console.log(reg1.test(str));
+       //[]表示或者的意思 这个表示a开头，c结尾，中间是b，c，d都可以
+       reg2 = /a[bcd]c/
+       console.log(reg1.test("acc"));
+       //[^ ] 除了
+       reg3 = /[^ad]/
+       console.log(reg1.test("acc"));
+       //[0-9] 任意数字
+       reg4 = /[0-9]/
+
+
+    
+    </script>
+</head>
+<body>
+
+</body>
+</html>
