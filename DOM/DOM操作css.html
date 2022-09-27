@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>css</title>
+    <style type="text/css">
+        #box1{
+            width: 200px;
+            height: 200px;
+            background-color: rosybrown;
+        }
+    </style>
+</head>
+<body> 
+    <div id="box1">
+    </div>
+    <div id="button">
+        <button id="btn1">点我修改样式</button>
+        <button id="btn2">点我查看样式</button>
+    </div>
+    <script type="text/javascript"> 
+    //为按钮绑定事件
+    var box1 = document.getElementById("box1");
+    var btn1 = document.getElementById("btn1");
+    /*     
+      通过JS修改的样式：
+      语法：元素.style.样式名 =样式值
+      通过style属性设置样式都是内联样式，
+      而内联样式有较高的优先级，所以通过JS修改的样式往往会立即显示
+      但是如果在样式中写了！important，则此时样式会有最高的优先级，
+      即使通过JS也不能覆盖该样式，此时将会导致JS修改样式失效，所以尽
+      量不要为样式添加！important*/
+    btn1.onclick = function(){
+        //通过js修改样式
+        box1.style.width = "300px";
+        box1.style.height = "300px";
+        box1.style.backgroundColor = "red";
+        /* 如果CSS的样式中含有-，这种名称在JS中式不合法的，
+           比如：background-color需要将这种样式名改为驼峰命名法，
+           去掉-，然后将-后的字母大写 */
+    }
+    var button2 = document.getElementById("btn2");
+            button2.onclick = function () {
+                /* 通过style属性设置和读取内联样式 内连样式指的是标签的属性值 */
+                alert(box1.style.width);
+                alert(box1.style.height);
+                alert(box1.style.backgroundColor);
+            };
+    
+    </script>
+
+</body>
+</html>

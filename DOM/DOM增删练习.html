@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>标题</title>
+</head>
+<body> 
+    <div>
+        <table id="employeeTable">
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Salary</th>
+                <th>&nbsp;</th>
+            </tr>
+            <tr>
+                <td>Tom</td>
+                <td>tom@tom.com</td>
+                <td>5000</td>
+                <td><a href="deleteEmp?id=001">Delete</a></td>
+            </tr>
+            <tr>
+                <td>Jerry</td>
+                <td>jerry@sohu.com</td>
+                <td>8000</td>
+                <td><a href="deleteEmp?id=002">Delete</a></td>
+            </tr>
+            <tr>
+                <td>Bob</td>
+                <td>bob@tom.com</td>
+                <td>10000</td>
+                <td><a href="deleteEmp?id=003">Delete</a></td>
+            </tr>
+        </table>
+   </div>
+   <div id="formDiv">
+
+    <h4>添加新员工</h4>
+
+    <table>
+        <tr>
+            <td class="word">name: </td>
+            <td class="inp">
+                <input type="text" name="empName" id="empName" />
+            </td>
+        </tr>
+        <tr>
+            <td class="word">email: </td>
+            <td class="inp">
+                <input type="text" name="email" id="email" />
+            </td>
+        </tr>
+        <tr>
+            <td class="word">salary: </td>
+            <td class="inp">
+                <input type="text" name="salary" id="salary" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center">
+                <button id="addEmpButton" value="abc">
+                    Submit
+                </button>
+            </td>
+        </tr>
+    </table>
+
+</div>
+    <script type="text/javascript"> 
+
+       //封装
+       function deleteA(){
+           //this给谁绑定就是谁 tr标签是a标签的爷爷 父亲的父亲
+            var tr = this.parentNode.parentNode;
+
+            //获取删除员工的名字 td是tr子标签
+            var name = tr.getElementsByTagName("td")[0].innerHTML;
+            //点击超链接会删除当行
+            //删除当前标签
+            //添加取消和确定 confirm返回值是true和false
+            var re = confirm("确定删除"+name+"吗？");
+            if(re){
+                //如果返回值为true就删除，否则取消
+                tr.parentNode.removeChild(tr);
+            }
+            //点击超链接会触发默认行为，
+            //可以在响应函数最后return false取消默认行为
+            return false;
+       }
+
+       /* 点击超链接删除员工信息 */
+        //获取所有超链接添加单击事件
+        var all = document.getElementsByTagName("a");
+        for (let index = 0; index < all.length; index++) {
+            //deleteA是函数，如果是deleteA()就是返回值
+            all[index].onclick = deleteA;
+                       
+        }
+    
+        /* 点击按钮把信息添加到table中 */
+        //为按钮绑定事件 
+        //获取按钮
+        var addButton = document.getElementById("addEmpButton");
+        addButton.onclick = function(){
+            //点击按钮把信息添加到table中
+            //先获取用户信息对象，再取数据 数据就是输入框对象的value
+            var nameValue = document.getElementById("empName").value;
+            var emailValue = document.getElementById("email").value;
+            var salaryValue = document.getElementById("salary").value;
+            // alert(nameValue+","+emailValue+","+salaryValue);
+            /* 
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Salary</th>
+                <th>&nbsp;</th>
+            </tr>
+            */
+           //需要先创建tr
+           var tr = document.createElement("tr");
+           //在创建td
+           var tdName = document.createElement("td");
+           var tdEmail = document.createElement("td");         
+           var tdSalary = document.createElement("td");      
+           var tdDelete = document.createElement("td");         
+           
+           //创建一个a标签对象
+           var a = document.createElement("a");
+           a.innerHTML = "Delete";
+           a.href = "deleteNew"
+
+           //添加文本
+           tdName.innerHTML = nameValue;
+           tdEmail.innerHTML = nameValue;
+           tdSalary.innerHTML = nameValue;
+           tdDelete.appendChild(a)
+
+           //添加子节点
+           tr.appendChild(tdName); 
+           tr.appendChild(tdEmail);
+           tr.appendChild(tdSalary);
+           tr.appendChild(tdDelete);
+
+           //为我们新添加的绑定事件
+           a.onclick = deleteA;
+
+           //我们添加的在tbody之外，人家都在tbody里面
+           //获取tbody对象 返回的是数组
+           var tbody = document.getElementsByTagName("tbody")[0];
+           tbody.appendChild(tr);
+           //再给表格父节点添加我们的tr
+           //var table = document.getElementById("employeeTable");
+           //table.appendChild(tr);
+        }
+
+    
+    </script>
+
+</body>
+</html>
