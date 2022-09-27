@@ -28,6 +28,7 @@
         for(var i=0;i<items.length;i++){
             items[i].checked=true;
         }
+        checkedAllBox.checked = true;
        }
 
 
@@ -40,6 +41,7 @@
         for(var i=0;i<items.length;i++){
             items[i].checked=false;
         }
+        checkedAllBox.checked = false;
        }
 
 
@@ -58,6 +60,7 @@
             //取反
             items[i].checked=!items[i].checked;    
         }
+        checkedAllBox.checked = !checkedAllBox.checked;
        }
 
 
@@ -76,20 +79,43 @@
 
        //全选/全部选
        //为全选/全部选添加点击事件
+       //事件函数中，响应函数是给谁绑定的this就是谁
        var checkedAllBox = document.getElementById("checkedAllBox");
        var items = document.getElementsByName("items");
        checkedAllBox.onclick = function(){
 
-        if(checkedAllBox.checked){
-            for(var i = 0;i<items.length;i++){
-                items[i].checked=true;
-            }
-        }else{
-            for(var i = 0;i<items.length;i++){
-                items[i].checked=false;
-            }
-        }
+        // if(checkedAllBox.checked){
+        //     for(var i = 0;i<items.length;i++){
+        //         items[i].checked=true;
+        //     }
+        // }else{
+        //     for(var i = 0;i<items.length;i++){
+        //         items[i].checked=false;
+        //     }
+        // }
+           for (var i = 0; i < items.length; i++) {
+               items[i].checked = this.checked;
+           }
        }
+
+
+       //四个全选中则全选框选中
+       //为四个多选框都绑定响应函数
+       for(var i=0;i<items.length;i++){
+           items[i].onclick = function(){
+               //将checkedAllBox设置为全选
+            checkedAllBox.checked = true;
+               //判断四个多选框是否全选
+               for(var j =0;j<items.length;j++){
+                   if(!items[j].checked){
+                    checkedAllBox.checked = false; 
+                    break;
+                   }
+               }
+           }
+
+       }
+
     </script>
 
 </body>

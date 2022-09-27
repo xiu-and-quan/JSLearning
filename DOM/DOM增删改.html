@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>DOM增删改</title>
+</head>
+<body> 
+    <div id="total">
+        <div class="inner">
+            <p>
+                你喜欢那个城市？
+            </p>
+            <ul id="city">
+                <li id="bj">北京</li>
+                <li>上海</li>
+                <li>南京</li>
+                <li>斯特拉斯堡</li>
+            </ul>
+        </div>
+        <div id="btnList">
+            <button id="btn01">点击第1个按钮</button>
+            <button id="btn02">点击第2个按钮</button>
+            <button id="btn03">点击第3个按钮</button>
+            <button id="btn04">点击第4个按钮</button>
+            <button id="btn05">点击第5个按钮</button>
+            <button id="btn06">点击第6个按钮</button>
+        </div>
+    </div>
+    <script type="text/javascript"> 
+    /*  父节点.appendChild(子节点)
+        向父节点中添加指定的子节点 
+        父节点.insertBefore(新节点,旧节点)
+        将一个新的节点插入到旧节点的前边
+        父节点.replaceChild(新节点,旧节点)
+        使用一个新的节点去替换旧节点
+
+        父节点.removeChild(子节点)
+        删除指定的子节点
+        推荐方式：子节点.parentNode.removeChild(子节点)
+
+        以上方法，实际就是改变了相应元素（标签）的innerHTML的值。*/
+
+        function myClick(idStr,fun){
+            var btn = document.getElementById(idStr);
+            btn.onclick = fun;
+        }
+        //向city中添加广州 
+        myClick("btn01",function(){
+            //创建一个li  参数为标签名，会返回一个标签对象
+            var li = document.createElement("li");  
+            //创建一个文本节点
+            // var gzTest = document.createTextNode("广州")
+            // //向父节点中添加指定的子节点
+            // li.appendChild(gzTest);
+            // //把节点加到city下
+            // var city = document.getElementById("city");
+            // city.appendChild(li);
+            //建议用这种
+            //向li中设置文本  
+            li.innerHTML = "广州";  
+            //将li添加到city中  
+            city.appendChild(li);
+        })
+
+        //将广州节点查到#bj前面
+        myClick("btn02",function(){
+            //创建一个li  参数为标签名，会返回一个标签对象
+            var li = document.createElement("li");  
+            //创建一个文本节点
+            var gzTest = document.createTextNode("广州")
+            //向父节点中添加指定的子节点
+            li.appendChild(gzTest);
+            //获取北京节点对象
+            var bj = document.getElementById("bj");
+            /* 父节点.insertBefore(新节点,旧节点)
+               将一个新的节点插入到旧节点的前边 */
+            var city = document.getElementById("city");  
+            city.insertBefore(li,bj); 
+        })
+
+        //使用广州节点替代北京节点
+        /* 父节点.replaceChild(新节点,旧节点)
+        使用一个新的节点去替换旧节点     */
+        myClick("btn03",function(){
+            //创建一个li  参数为标签名，会返回一个标签对象
+            var li = document.createElement("li");  
+            //创建一个文本节点
+            var gzTest = document.createTextNode("广州")
+            //向父节点中添加指定的子节点
+            li.appendChild(gzTest);
+            //获取北京节点对象
+            var bj = document.getElementById("bj");
+            /* 父节点.insertBefore(新节点,旧节点)
+               将一个新的节点插入到旧节点的前边 */
+            var city = document.getElementById("city");  
+            city.replaceChild(li,bj); 
+        })
+
+        //删除bi节点
+        /* 父节点.removeChild(子节点)
+           删除指定的子节点 */
+           myClick("btn04",function(){
+               var bj = document.getElementById("bj");
+            //    var city = document.getElementById("city");
+            //    city.removeChild(bj);
+        /* 子节点.parentNode.removeChild(子节点) 不需要知道父节点是谁，也不需要获取了*/
+               bj.parentNode.removeChild(bj);
+           })
+           
+        //获取city内的HTML代码
+        myClick("btn05",function(){
+            var city = document.getElementById("city");
+            alert(city.innerHTML);
+        })
+
+        //修改bj内的THTML代码
+        myClick("btn05",function(){
+            var bj = document.getElementById("bj");
+            bj.innerHTML = "南京";
+            alert(bj.innerHTML);
+        })
+
+        //向city中添加广州 用innerHTML 不建议用
+        myClick("btn06",function(){
+            //把节点加到city下
+            var city = document.getElementById("city");
+            city.innerHTML += "<li>广州<li>";
+        })
+
+    </script>
+
+</body>
+</html>
