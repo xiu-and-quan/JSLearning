@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>事件对象</title>
+</head>
+<body> 
+    <div id="areaDiv" style="background-color: aqua;width: 600px;height: 100px;"></div>
+    <div id="showMsg" style="background-color: rgb(107, 189, 74);width: 600px;height: 30px;"></div>
+    <script type="text/javascript"> 
+    /* 事件
+        就是文档或浏览器窗口中发生一些特定的交互瞬间
+        JavaScript与HTML之间的交互是通过事件实现的
+        对于Web应用来说，有下面这些代表性事件：
+        点击按钮
+        将鼠标移动至某个元素的上方
+        按下键盘上某个键
+        关闭窗口
+    …… */
+    //当鼠标在移动是，实时显示鼠标的坐标
+    var areaDiv = document.getElementById("areaDiv");
+    var showMsg = document.getElementById("showMsg");
+    /* 事件对象：当事件响应触发时，浏览器每次都会把一个事件对象作为
+       实参传递进响应函数,我们写不写实参都会传的，在事件对象中封装了
+       当前事件相关的一切信息，比如：鼠标的坐标，键盘哪个按键被按下，
+       鼠标滚轮的方向....
+     */
+
+     /* 在ie8中，响应函数被触发时，浏览器不会传递事件对象
+        在ie8以下，是将事件对象作为window对象的属性保存的 */
+    areaDiv.onmousemove = function(event){
+        if(!event){
+            event = window.event;
+        }
+        var x = event.clientX;
+        var y = event.clientY;
+        //alert(x+","+y);
+        showMsg.innerHTML = "x="+x+","+"u="+y;
+    }
+    </script>
+
+</body>
+</html>
