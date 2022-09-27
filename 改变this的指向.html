@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>标题</title>
+</head>
+<body> 
+    <script type="text/javascript"> 
+    /* 
+    call（）和 apply（）
+    这两个方法都是函数对象的方法，需要通过函数对象来调用
+    当对函数调用call（）和apply（）都会调用函数执行对象
+    在调用call（）和apply（）可以将一个对象指定为第一个参数，
+    此时这个对象将会成为函数执行时的this
+    call（）方法可以将实参在对象之后依次传递
+    apply（）方法需要将实参封装到一个数组中统一传递
+    实参的个数由函数的形参确定
+    this的情况：
+    以函数形式调用时，this永远都是window
+    以方法的形式调用时，this是调用方法的对象
+    以构造函数的形式调用时，this新创建的那个对象
+    使用call和apply调用，this时指定的那个对象
+    */
+    function Person() {
+            this.name = 'kobe';
+            this.sex = '男';
+            this.age = '41';
+        }
+ 
+        function Star(name,sex,age) {
+            Person.call(this,name,sex,age);  //call 改变了this指向
+            console.log(this.name);
+            console.log(this.sex);
+            console.log(this.age);
+        }
+        new Star();     // 实例化对象
+        function Person() {
+            this.name = 'kobe';
+            this.sex = '男';
+            this.age = '41';
+        }
+ 
+        function Star(arr) {
+            console.log(this); // 这个this指向 Star
+            console.log(arr);
+        }
+        Star.apply(Person,['科比']) // 改变this指向之后，变成指向Person ，且参数要是数组形式
+        
+    </script>
+
+</body>
+</html>

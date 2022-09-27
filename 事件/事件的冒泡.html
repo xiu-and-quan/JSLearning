@@ -3,10 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <title>冒泡</title>
+    <style>
+        #box{
+          width: 500px;
+          height: 500px;
+          background-color: green;
+        }
+        span{
+          width: 200px;
+          height: 100px;
+            background-color: yellow;
+        }
+      </style>
 </head>
 <body> 
+      <div id="box">
+          我是div
+          <span id="spanBox">
+              我是span
+          </span>
+        </div>
     <script type="text/javascript"> 
-       
+       /* 所谓的冒泡指的就是事件向上传导，当后代元素上的事件被触发时，
+       其祖先元素的[相同事件]也会被触发在开发中的大部分情况中，冒泡都是
+       有用的，如果不希望发生事件冒泡可以通过事件对象来取消冒泡
+       cancelBubble
+       可以将事件对象的cancelBubble设置为true，即可取消冒泡
+       true着取消，false则启用
+        */
+        var box =document.getElementById("box");
+        box.onclick =function (event){
+            event = event||window.event;
+            alert("我是div函数");
+            //true着取消，false则启用2
+            event.cancelBubble =false;
+        };
+        var span =document.getElementById("spanBox");
+        span.onclick =function (event){
+            event = event||window.event;
+          alert("我是span函数");
+          //true着取消，false则启用
+          event.cancelBubble =false;
+        };
+
+        document.body.onclick =function (){
+          alert("我是body函数");
+        };
     </script>
 
 </body>

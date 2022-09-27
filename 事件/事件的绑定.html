@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>标题</title>
+</head>
+<body> 
+    <div>
+        <button id="button1">点我1</button>
+        <button id="button2">点我2</button>
+        <button id="button3">点我3</button>
+    </div>
+    <script type="text/javascript"> 
+        var button1 = document.getElementById("button1");
+            //这种方式后者会对前者进行覆盖，所以它只会弹出2
+            //绑定多个事件，后面会把前面给覆盖掉
+            button1.onclick = function () {
+                alert(1);
+            };  
+            button1.onclick = function () {
+                alert(2);
+            };    
+            /* 
+            addEvebtListener() 中的this指的是绑定事件的对象
+            通过这个方法也可以为元素绑定响应函数
+            参数：
+            事件的字符串
+            回调函数，当时间触发时该函数会被调用
+            是否在捕获阶段触发事件，需要一个布尔值，一般情况下，都传false
+            兼容性问题，IE8及以下没有这个方法
+            */
+        var button2 = document.getElementById("button2");
+            button2.addEventListener("click", function () {
+                alert(1);
+            }, false);
+            button2.addEventListener("click", function () {
+                alert(2);
+            }, false);
+            /* 
+            attachEvent()中的this指的是window
+            在IE8中可以使用attachEvent()来绑定事件
+            参数：
+            事件的字符串，要on
+            回调函数 */
+        var button3 = document.getElementById("button3");
+            button3.attachEvent("onclick",function (){
+                alert(1);
+                });
+            button3.attachEvent("onclick",function (){
+                alert(2);
+            });
+            //封装
+              /**
+         *
+         * @param obj       绑定事件的对象
+         * @param eventStr  事件的字符串（不要on）
+         * @param callback  回调函数
+         */
+        function bind(obj,eventStr,callback){
+            if(obj.addEventListener){
+                //大部分浏览器
+                obj.addEventListener(eventStr,callback,false);
+            }else {
+                /**
+                 * this是由谁调的方式决定
+                 * callback().call(obj);
+                 */
+                //IE8及以下浏览器
+                obj.attachEvent("on"+eventStr,function (){
+                    callback.call(obj);
+                });
+            }
+        }
+
+    </script>
+
+</body>
+</html>
